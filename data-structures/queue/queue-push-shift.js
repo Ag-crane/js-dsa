@@ -24,7 +24,7 @@ class Queue {
         return this.items.length === 0;
     }
 
-    front() {
+    peek() {
         return this.isEmpty() ? null : this.items[0];
     }
 
