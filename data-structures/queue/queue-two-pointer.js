@@ -18,7 +18,7 @@ class Queue {
         return this.front === this.rear
     }
 
-    peak() {
+    peek() {
         return this.items[this.front]
     }
 
