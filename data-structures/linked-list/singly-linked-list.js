@@ -32,8 +32,8 @@ class SinglyLinkedList {
             this.head = newNode;
             this.tail = newNode;
         } else {
-            this.tail.next = newNode;
-            this.tail = newNode;
+            newNode.next = this.head;
+            this.head = newNode;
         }
         this.size++;
     }
@@ -71,7 +71,7 @@ class SinglyLinkedList {
         this.size++;
     }
 
-    // 4) 특정 위치의 노드 삭제
+    // 특정 위치의 노드 삭제
     remove(index) {
         if (index < 0 || index >= this.size) {
             throw new Error("Index out of bounds");
@@ -82,6 +82,10 @@ class SinglyLinkedList {
         if (index === 0) {
             deletedNode = this.head;
             this.head = this.head.next;
+            // 리스트가 비워졌다면 tail 업데이트
+            if (this.size === 1) {
+                this.tail = null;
+            }
         } else {
             let current = this.head;
             let previous = null;
@@ -98,7 +102,7 @@ class SinglyLinkedList {
 
             // 제거한 노드가 tail이었던 경우 tail 업데이트
             if (index === this.size - 1) {
-                this.tail = index === 0 ? null : previous;
+                this.tail = previous;
             }
         }
 
@@ -106,7 +110,7 @@ class SinglyLinkedList {
         return deletedNode;
     }
 
-    // 5) 노드 검색
+    // 노드 검색
     find(value) {
         let current = this.head;
         while (current) {
@@ -118,7 +122,7 @@ class SinglyLinkedList {
         return null;
     }
 
-    // 6) 리스트 출력
+    // head부터 순회
     print() {
         const values = [];
         let current = this.head;
