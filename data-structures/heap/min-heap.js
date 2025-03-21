@@ -19,7 +19,7 @@ class MinHeap {
 
     push(value) {
         this.heap.push(value); // 일단 삽입 후
-        this.heapifyUp(); // 위로 올리며 정렬
+        this.bubbleUp(); // 위로 올리며 정렬
     }
 
     pop() {
@@ -30,13 +30,13 @@ class MinHeap {
         const root = this.heap[0];
         this.heap[0] = this.heap.pop();
 
-        this.heapifyDown(0);
+        this.bubbleDown(0);
 
         return root;
     }
 
     // 끝에 삽입된 원소 위로 올리며 정렬
-    heapifyUp() {
+    bubbleUp() {
         let index = this.getSize() - 1; // 삽입된 원소 인덱스
 
         // 부모보다 작으면 계속 위로
@@ -57,7 +57,7 @@ class MinHeap {
     }
 
     // 특정 노드를 루트로 하는 부분 트리를 재정렬하여 힙 구조로 만든다
-    heapifyDown(index) {
+    bubbleDown(index) {
         const size = this.getSize();
 
         while (true) {
