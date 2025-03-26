@@ -45,11 +45,11 @@
 - 삽입 : O(logN)
 	- 새 원소를 힙에 추가한다.
 	- 원소를 마지막 위치에 추가한 후 부모 노드와 비교하여 힙 조건을 만족하도록 위치를 조정한다. 
-	- 이를 '상향 힙(heapify-up)'이라 부른다.
+	- 이를 '상향 힙(heapify-up, bubble-up, shift-up)'이라 부른다.
 - 삭제 (delete) : O(logN)
 	- 루트 노드(최대 힙에서는 최대값, 최소 힙에서는 최소값)를 제거한다.
 	- 제거한 후 마지막 원소를 루트 위치로 옮기고, 다시 힙 조건을 만족하도록 위치를 조정한다. 
-	- 이를 '하향 힙(heapify-down)'이라 부른다.
+	- 이를 '하향 힙(heapify-down, bubble-down, shift-down)'이라 부른다.
 - 조회(peek) : O(1)
 루트 노드를 반환하며 제거하지는 않는다. 최대 힙의 경우 최댓값, 최소 힙의 경우 최솟값을 조회할 수 있다.
 
@@ -62,3 +62,11 @@
 2. 다익스트라 알고리즘과 같은 그래프 알고리즘에서 최단 경로 탐색
 
 3. 힙 정렬(Heap Sort) 알고리즘
+
+### 구현 시 주의사항
+- swap 이후 다음 index 업데이트 하기
+- 연산 전 index 초기화
+	- bubbleUp에서는 while문 앞에서, 시작 노드(index)를 마지막 노드(heap.length-1)로.
+	- bubbleDown에서는 while문 안에서, 가장 작은 노드(smallestIndex)를 현재 노드(index)로.
+- bubbleDown에서 `childIndex > size` 조건 꼭 체크하기
+- bubbleDown에서 childIndex 값과 비교 대상은 index 값이 아니라 smallestIndex 값이다.
